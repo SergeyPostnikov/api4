@@ -26,4 +26,6 @@ if __name__ == '__main__':
     # get_picture(
     #     'https://upload.wikimedia.org/wikipedia/commons/3/3f/HST-SM4.jpeg', 
     #     'images')
-    print((get_links()))
+    # print((get_links()))
+    for url in get_links():
+        get_picture(url, 'images')
