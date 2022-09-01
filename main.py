@@ -15,11 +15,16 @@ def get_picture(url, directory):
         file.write(response.content)
 
 
-def get_links():
+def get_spacex_links():
     url = 'https://api.spacexdata.com/v5/launches/5eb87d47ffd86e000604b38a'
     response = requests.get(url)
     response.raise_for_status()
     return response.json().get('links').get('flickr').get('original')
+
+
+def fetch_spacex_last_launch():
+    for url in get_spacex_links():
+        get_picture(url, 'images')
 
 
 if __name__ == '__main__':
@@ -27,5 +32,4 @@ if __name__ == '__main__':
     #     'https://upload.wikimedia.org/wikipedia/commons/3/3f/HST-SM4.jpeg', 
     #     'images')
     # print((get_links()))
-    for url in get_links():
-        get_picture(url, 'images')
+    fetch_spacex_last_launch()
