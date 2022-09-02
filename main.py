@@ -30,6 +30,20 @@ def get_spacex_links():
     return response.json().get('links').get('flickr').get('original')
 
 
+def get_apod_links(count):
+    urls = []
+    url = "https://api.nasa.gov/planetary/apod"
+    payload = {
+        "api_key": "sKrvKPzb8Jma4bOxmW00Q679IyIEGg7CvcRq9YRU",
+        "count": count
+    }
+    response = requests.get(url, params=payload)
+    response.raise_for_status()
+    for resp in response.json():
+        urls.append(resp.get("url"))
+    return urls
+
+
 def fetch_spacex_last_launch():
     for url in get_spacex_links():
         get_picture(url, 'images')
@@ -40,4 +54,5 @@ if __name__ == '__main__':
     #     'https://upload.wikimedia.org/wikipedia/commons/3/3f/HST-SM4.jpeg', 
     #     'images')
     # print((get_links()))
-    fetch_spacex_last_launch()
+    # fetch_spacex_last_launch()
+    print(get_apod_links(2))
