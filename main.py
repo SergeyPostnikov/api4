@@ -19,7 +19,7 @@ def get_picture(url, directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
 
-    with open(f'images/{get_filename()}', 'wb') as file:
+    with open(f'images/{get_filename(url)}', 'wb') as file:
         file.write(response.content)
 
 
@@ -28,6 +28,11 @@ def get_spacex_links():
     response = requests.get(url)
     response.raise_for_status()
     return response.json().get('links').get('flickr').get('original')
+
+
+def fetch_spacex_last_launch():
+    for url in get_spacex_links():
+        get_picture(url, 'images')
 
 
 def get_apod_links(count):
@@ -44,8 +49,8 @@ def get_apod_links(count):
     return urls
 
 
-def fetch_spacex_last_launch():
-    for url in get_spacex_links():
+def fetch_apod():
+    for url in get_apod_links(30):
         get_picture(url, 'images')
 
 
@@ -55,4 +60,5 @@ if __name__ == '__main__':
     #     'images')
     # print((get_links()))
     # fetch_spacex_last_launch()
-    print(get_apod_links(2))
+    # print(get_apod_links(2))
+    fetch_apod()
