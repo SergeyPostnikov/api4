@@ -1,17 +1,25 @@
 import requests
 import os
-from urllib.parse import urlparse
+from os.path import splitext
+from urllib.parse import urlparse, unquote
+
+
+def get_filename(url):
+    return unquote(urlparse(url).path.split('/')[-1])
+
+
+def get_ext(url):
+    return splitext(get_filename(url))[1]
 
 
 def get_picture(url, directory):
-    filename = urlparse(url).path.split('/')[-1]
     response = requests.get(url)
     response.raise_for_status()
 
     if not os.path.exists(directory):
         os.makedirs(directory)
 
-    with open(f'images/{filename}', 'wb') as file:
+    with open(f'images/{get_filename()}', 'wb') as file:
         file.write(response.content)
 
 
