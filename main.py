@@ -2,6 +2,7 @@ import requests
 import os
 from os.path import splitext
 from urllib.parse import urlparse, unquote
+from datetime import datetime
 
 
 def get_filename(url):
@@ -12,8 +13,9 @@ def get_ext(url):
     return splitext(get_filename(url))[1]
 
 
-def get_date(dt):
-    return "/".join(dt.split()[0].split('-'))
+def get_date(datestring):
+    dt = datetime.strptime(datestring, '%Y-%m-%d %H:%M:%S')
+    return dt.strftime("%Y/%m/%d")
 
 
 def get_picture(url, directory):
@@ -81,4 +83,5 @@ if __name__ == '__main__':
     # fetch_spacex_last_launch()
     # print(get_apod_links(2))
     # fetch_apod()
-    print(get_epic_paths())
+    print(get_epic_links())
+    # print(get_date('2022-09-04 00:59:48'))
