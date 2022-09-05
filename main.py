@@ -18,8 +18,8 @@ def get_date(datestring):
     return dt.strftime("%Y/%m/%d")
 
 
-def get_picture(url, directory):
-    response = requests.get(url)
+def get_picture(url, directory, api_key=None):
+    response = requests.get(url, params={"api_key": api_key})
     response.raise_for_status()
 
     if not os.path.exists(directory):
@@ -45,7 +45,7 @@ def get_apod_links(count):
     urls = []
     url = "https://api.nasa.gov/planetary/apod"
     payload = {
-        "api_key": "sKrvKPzb8Jma4bOxmW00Q679IyIEGg7CvcRq9YRU",
+        "api_key":  "sKrvKPzb8Jma4bOxmW00Q679IyIEGg7CvcRq9YRU",
         "count": count
     }
     response = requests.get(url, params=payload)
@@ -75,6 +75,10 @@ def get_epic_links():
     return links
 
 
+def fetch_epic():
+    for url in get_epic_links():
+        get_picture(url, 'images', '5U95NTyAukMS2pxYjtFU4ljejg5MX1IT4c9uB2Wu')
+
 if __name__ == '__main__':
     # get_picture(
     #     'https://upload.wikimedia.org/wikipedia/commons/3/3f/HST-SM4.jpeg', 
@@ -83,5 +87,6 @@ if __name__ == '__main__':
     # fetch_spacex_last_launch()
     # print(get_apod_links(2))
     # fetch_apod()
-    print(get_epic_links())
+    # print(get_epic_links())
     # print(get_date('2022-09-04 00:59:48'))
+    fetch_epic()
