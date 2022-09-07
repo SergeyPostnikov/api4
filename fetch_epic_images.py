@@ -1,15 +1,33 @@
 import argparse
 import requests
+import os
 
 
-def get_spacex_links():
-    url = 'https://api.spacexdata.com/v5/launches/5eb87d47ffd86e000604b38a'
-    response = requests.get(url)
+from helpers import get_date, get_picture
+from dotenv import load_dotenv
+
+
+def get_epic_links(auth_token):
+    links = []
+    url = "https://api.nasa.gov/EPIC/api/natural/images"
+    payload = {
+        "api_key": auth_token,
+    }
+    response = requests.get(url, params=payload)
     response.raise_for_status()
-    return response.json().get('links').get('flickr').get('original')
+    for resp in response.json():
+        date = get_date(resp.get("date"))
+        filename = f'{resp.get("image")}.png'
+        links.append(f'https://api.nasa.gov/EPIC/archive/natural/{date}/png/{filename}')
+    return links
 
 
-def fetch_spacex_last_launch():
-    for url in get_spacex_links():
-        get_picture(url, 'images')
+def fetch_epic(auth_token):
+    for url in get_epic_links(auth_token):
+        get_picture(url, 'images', auth_token)
 
+
+if __name__ == '__main__':  
+    load_dotenv()
+    auth_token = os.getenv('NASA_API_KEY')
+    fetch_epic(auth_token)
