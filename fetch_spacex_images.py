@@ -1,22 +1,28 @@
 import argparse
 import requests
 
+from helpers import get_picture
 
-def get_epic_links():
-    links = []
-    url = "https://api.nasa.gov/EPIC/api/natural/images"
-    payload = {
-        "api_key": "sKrvKPzb8Jma4bOxmW00Q679IyIEGg7CvcRq9YRU",
-    }
-    response = requests.get(url, params=payload)
+
+def get_spacex_links(launch_id=None):
+    if launch_id is not None:
+        url = f'https://api.spacexdata.com/v5/launches/{launch_id}'
+    else:
+        url = 'https://api.spacexdata.com/v5/launches/latest'
+    response = requests.get(url)
     response.raise_for_status()
-    for resp in response.json():
-        date = get_date(resp.get("date"))
-        filename = f'{resp.get("image")}.png'
-        links.append(f'https://api.nasa.gov/EPIC/archive/natural/{date}/png/{filename}')
-    return links
+    return response.json().get('links').get('flickr').get('original')
 
 
-def fetch_epic():
-    for url in get_epic_links():
-        get_picture(url, 'images', '5U95NTyAukMS2pxYjtFU4ljejg5MX1IT4c9uB2Wu')
+def fetch_spacex_launch(launch_id=None):
+    for url in get_spacex_links(launch_id):
+        get_picture(url, 'images')
+
+
+if __name__ == '__main__':
+    # for test use --launch_id 5eb87d47ffd86e000604b38a
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--launch_id', help='launch id')
+    args = parser.parse_args()
+    fetch_spacex_launch(args.launch_id)
+    print(args.launch_id)
