@@ -1,7 +1,7 @@
 import argparse
 import requests
 
-from helpers import get_picture
+from picture_handlers import get_picture
 
 
 def get_spacex_links(launch_id=None):

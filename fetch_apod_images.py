@@ -2,7 +2,7 @@ import argparse
 import requests
 import os
 
-from helpers import get_picture
+from picture_handlers import get_picture
 from dotenv import load_dotenv
 
 

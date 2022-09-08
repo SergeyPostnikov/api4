@@ -2,7 +2,7 @@ import requests
 import os
 
 
-from helpers import get_date, get_picture
+from picture_handlers import get_date, get_picture
 from dotenv import load_dotenv
 
 
