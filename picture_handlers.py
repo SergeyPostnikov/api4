@@ -18,8 +18,8 @@ def get_date(datestring):
     return dt.strftime("%Y/%m/%d")
 
 
-def get_picture(url, directory, api_key=None):
-    response = requests.get(url, params={"api_key": api_key})
+def get_picture(url, directory, params={}):
+    response = requests.get(url, params=params)
     response.raise_for_status()
 
     if not os.path.exists(directory):
@@ -27,4 +27,3 @@ def get_picture(url, directory, api_key=None):
 
     with open(f'images/{get_filename(url)}', 'wb') as file:
         file.write(response.content)
-
