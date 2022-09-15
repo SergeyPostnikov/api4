@@ -5,12 +5,17 @@ import random
 import requests
 
 from dotenv import load_dotenv
+from os.path import join
+from pathlib import Path
+
+
+BASE_DIR = Path(__file__).resolve().parent
 
 
 def get_random_picture(directory):
     *args, files = next(os.walk(directory))
     random.shuffle(files)
-    return f'{directory}/{random.choice(files)}'
+    return join(directory, random.choice(files))
 
 
 if __name__ == '__main__':

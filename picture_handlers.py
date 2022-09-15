@@ -1,8 +1,12 @@
 import requests
 import os
-from os.path import splitext
+from os.path import splitext, join
 from urllib.parse import urlparse, unquote
 from datetime import datetime
+
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
 
 
 def get_filename(url):
@@ -23,5 +27,9 @@ def get_picture(url, directory, params={}):
     response.raise_for_status()
     os.makedirs(directory, exist_ok=True)
 
-    with open(f'images/{get_filename(url)}', 'wb') as file:
+    with open(join(BASE_DIR, 'images', get_filename(url)), 'wb') as file:
         file.write(response.content)
+
+
+if __name__ == '__main__':
+    print(join(BASE_DIR, 'images', get_filename('https://sun9-22.userapi.com/impg/yHs2i5j4sRb4B6N5X-SEeXafmlzki5awDnF9zg/szRPTFrGz-k.jpg?size=604x604&quality=96&sign=daab6e847eab745907009243a304e7bb&type=album')))
