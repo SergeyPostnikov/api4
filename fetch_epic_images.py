@@ -23,7 +23,7 @@ def get_epic_links(auth_token):
 
 def fetch_epic(auth_token):
     for url in get_epic_links(auth_token):
-        get_picture(url, 'images', auth_token)
+        get_picture(url, 'images', params={'api_key': auth_token})
 
 
 if __name__ == '__main__':  
