@@ -30,6 +30,6 @@ if __name__ == '__main__':
     auth_token = os.getenv('NASA_API_KEY')
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('count', help='number of links')
+    parser.add_argument('--count', help='number of links', default=3)
     args = parser.parse_args()
     fetch_apod(auth_token, args.count)
