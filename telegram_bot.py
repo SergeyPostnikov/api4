@@ -2,6 +2,7 @@ import telegram
 import os
 import time
 import random
+import requests
 
 from dotenv import load_dotenv
 
@@ -20,6 +21,18 @@ if __name__ == '__main__':
     chat_id = -1001691456773
 
     while True:
-        with open(get_random_picture('images'), 'rb') as photo:
+        with open(get_random_picture('images'), 'rb') as f:
+            photo = f.read()
+        
+        try:
             bot.send_photo(chat_id=chat_id, photo=photo)
-        time.sleep(3600 * int(period))
+        except telegram.error.NetworkError as err:
+            print(err)
+            time.sleep(5)
+            continue
+        except requests.exceptions.ConnectionError as err:
+            print(err)
+            time.sleep(5)
+            continue
+        else:
+            time.sleep(3600 * int(period))
