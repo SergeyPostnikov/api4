@@ -21,9 +21,7 @@ def get_date(datestring):
 def get_picture(url, directory, params={}):
     response = requests.get(url, params=params)
     response.raise_for_status()
-
-    if not os.path.exists(directory):
-        os.makedirs(directory)
+    os.makedirs(directory, exist_ok=True)
 
     with open(f'images/{get_filename(url)}', 'wb') as file:
         file.write(response.content)
