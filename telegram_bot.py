@@ -20,5 +20,6 @@ if __name__ == '__main__':
     chat_id = -1001691456773
 
     while True:
-        bot.send_photo(chat_id=chat_id, photo=open(get_random_picture('images'), 'rb'))
+        with open(get_random_picture('images'), 'rb') as photo:
+            bot.send_photo(chat_id=chat_id, photo=photo)
         time.sleep(3600 * int(period))
