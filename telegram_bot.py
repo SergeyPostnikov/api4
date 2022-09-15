@@ -18,7 +18,7 @@ if __name__ == '__main__':
     auth_token = os.getenv('TELEGRAM_API_KEY')
     period = os.getenv('PUB_PERIOD_HRS')
     bot = telegram.Bot(token=auth_token)
-    chat_id = -1001691456773
+    chat_id = os.getenv('CHANNEL_ID')
 
     while True:
         with open(get_random_picture('images'), 'rb') as f:
