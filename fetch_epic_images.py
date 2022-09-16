@@ -15,9 +15,12 @@ def get_epic_links(auth_token):
     response = requests.get(url, params=payload)
     response.raise_for_status()
     for resp in response.json():
-        date = get_date(resp.get("date"))
-        filename = f'{resp.get("image")}.png'
-        links.append(f'https://api.nasa.gov/EPIC/archive/natural/{date}/png/{filename}')
+        try:
+            date = get_date(resp["date"])
+            filename = f'{resp["image"]}.png'
+            links.append(f'https://api.nasa.gov/EPIC/archive/natural/{date}/png/{filename}')
+        except KeyError:
+            print('No links taken\n check api response')
     return links
 
 

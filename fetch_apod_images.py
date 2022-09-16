@@ -16,7 +16,9 @@ def get_apod_links(auth_token, count):
     response = requests.get(url, params=payload)
     response.raise_for_status()
     for resp in response.json():
-        urls.append(resp.get("url"))
+        url = resp.get("url")
+        if url is not None:
+            urls.append(url)
     return urls
 
 
