@@ -31,5 +31,5 @@ def fetch_epic(auth_token):
 
 if __name__ == '__main__':  
     load_dotenv()
-    auth_token = os.getenv('NASA_API_KEY')
+    auth_token = os.environ['NASA_API_KEY']
     fetch_epic(auth_token)

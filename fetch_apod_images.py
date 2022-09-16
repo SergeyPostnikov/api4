@@ -29,7 +29,7 @@ def fetch_apod(auth_token, count):
 
 if __name__ == '__main__':  
     load_dotenv()
-    auth_token = os.getenv('NASA_API_KEY')
+    auth_token = os.environ['NASA_API_KEY']
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--count', help='number of links', default=3)
