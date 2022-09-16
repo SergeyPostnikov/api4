@@ -20,7 +20,7 @@ def get_random_picture(directory):
 
 if __name__ == '__main__':
     load_dotenv()
-    auth_token = os.getenv('TELEGRAM_API_KEY')
+    auth_token = os.environ('TELEGRAM_API_KEY')
     period = os.getenv('PUB_PERIOD_HRS')
     chat_id = os.getenv('CHANNEL_ID')
 
