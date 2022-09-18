@@ -10,7 +10,9 @@ BASE_DIR = Path(__file__).resolve().parent
 
 
 def get_filename(url):
-    return unquote(urlparse(url).path.split('/')[-1])
+    dt = datetime.now()
+    filename = dt.strftime("%Y-%m-%d-%H-%M-%S")
+    return filename + unquote(urlparse(url).path.split('/')[-1])
 
 
 def get_ext(url):
