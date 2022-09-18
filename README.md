@@ -7,7 +7,7 @@ This is implementation of telegram bot, which purpose is posting random pictures
  - create .env file on project directory
  - make a record formatted as "NASA_API_KEY=YUORTOKEN"
 
- - register yourbot on botfather telegram
+ - register your bot on botfather telegram
  - get personal token
  - add a record formatted as "TELEGRAM_API_KEY=YUORTOKEN"
  - add a record "PUB_PERIOD_HRS=4"
@@ -33,7 +33,7 @@ fetch pictures from latest launch
 python fetch_spacex_images.py
 ```
 cli app
-fetch pictures from paticular launch by id
+fetch pictures from particular launch by id
 for example use 5eb87d47ffd86e000604b38a
 ```
 python fetch_spacex_images.py --launch_id  <launch_id>
