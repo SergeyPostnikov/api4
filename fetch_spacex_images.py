@@ -18,7 +18,6 @@ def get_spacex_links(launch_id):
 def fetch_spacex_launch(launch_id):
     for url in get_spacex_links(launch_id):
         get_picture(url, 'images')
-        print('fetch')
 
 
 if __name__ == '__main__':
