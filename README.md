@@ -10,7 +10,7 @@ This is implementation of telegram bot, which purpose is posting random pictures
  - register your bot on botfather telegram
  - get personal token
  - add a record formatted as "TELEGRAM_API_KEY=YUORTOKEN"
- - add a record "PUB_PERIOD_HRS=4"
+
 
  then you could start installation of project.
 ### How to install
