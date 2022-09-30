@@ -22,7 +22,7 @@ if __name__ == '__main__':
     load_dotenv()
     auth_token = os.environ['TELEGRAM_API_KEY']
     period = os.getenv('PUB_PERIOD_HRS', default=4)
-    chat_id = os.getenv('CHANNEL_ID')
+    chat_id = os.environ['CHANNEL_ID']
 
     bot = telegram.Bot(token=auth_token)
 
