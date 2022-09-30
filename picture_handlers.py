@@ -31,7 +31,3 @@ def save_picture(url, directory, params=None):
 
     with open(join(BASE_DIR, 'images', get_filename(url)), 'wb') as file:
         file.write(response.content)
-
-
-if __name__ == '__main__':
-    print(join(BASE_DIR, 'images', get_filename('https://sun9-22.userapi.com/impg/yHs2i5j4sRb4B6N5X-SEeXafmlzki5awDnF9zg/szRPTFrGz-k.jpg?size=604x604&quality=96&sign=daab6e847eab745907009243a304e7bb&type=album')))
