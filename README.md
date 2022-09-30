@@ -9,7 +9,7 @@ This is implementation of telegram bot, which purpose is posting random pictures
 
  - register your bot on botfather telegram
  - get personal token
- - add a record formatted as "TELEGRAM_API_KEY=YUORTOKEN"
+ - add a record formatted as "TG_TOKEN=YUORTOKEN"
 
 
  then you could start installation of project.
