@@ -24,7 +24,7 @@ def get_date(datestring):
     return dt.strftime("%Y/%m/%d")
 
 
-def get_picture(url, directory, params=None):
+def save_picture(url, directory, params=None):
     response = requests.get(url, params=params)
     response.raise_for_status()
     os.makedirs(directory, exist_ok=True)

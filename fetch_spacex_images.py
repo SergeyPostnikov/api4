@@ -1,7 +1,7 @@
 import argparse
 import requests
 
-from picture_handlers import get_picture
+from picture_handlers import save_picture
 
 
 def get_spacex_links(launch_id):
@@ -17,7 +17,7 @@ def get_spacex_links(launch_id):
 
 def fetch_spacex_launch(launch_id):
     for url in get_spacex_links(launch_id):
-        get_picture(url, 'images')
+        save_picture(url, 'images')
 
 
 if __name__ == '__main__':

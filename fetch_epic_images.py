@@ -2,7 +2,7 @@ import requests
 import os
 
 
-from picture_handlers import get_date, get_picture
+from picture_handlers import get_date, save_picture
 from dotenv import load_dotenv
 
 
@@ -26,7 +26,7 @@ def get_epic_links(auth_token):
 
 def fetch_epic(auth_token):
     for url in get_epic_links(auth_token):
-        get_picture(url, 'images', params={'api_key': auth_token})
+        save_picture(url, 'images', params={'api_key': auth_token})
 
 
 if __name__ == '__main__':  

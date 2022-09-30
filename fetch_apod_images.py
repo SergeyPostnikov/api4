@@ -2,7 +2,7 @@ import argparse
 import requests
 import os
 
-from picture_handlers import get_picture
+from picture_handlers import save_picture
 from dotenv import load_dotenv
 
 
@@ -24,7 +24,7 @@ def get_apod_links(auth_token, count):
 
 def fetch_apod(auth_token, count):
     for url in get_apod_links(auth_token, count):
-        get_picture(url, 'images')
+        save_picture(url, 'images')
 
 
 if __name__ == '__main__':  
