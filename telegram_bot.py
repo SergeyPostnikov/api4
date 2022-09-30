@@ -2,12 +2,11 @@ import telegram
 import os
 import time
 import random
-import requests
 
 from dotenv import load_dotenv
 from os.path import join
 from pathlib import Path
-
+from urllib3.exceptions import HTTPError
 
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -36,7 +35,7 @@ if __name__ == '__main__':
             print(err)
             time.sleep(5)
             continue
-        except requests.exceptions.ConnectionError as err:
+        except HTTPError as err:
             print(err)
             time.sleep(5)
             continue
