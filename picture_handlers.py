@@ -10,7 +10,9 @@ BASE_DIR = Path(__file__).resolve().parent
 
 
 def get_filename(url):
-    filename = unquote(urlparse(url).path.split("/")[-1])
+    path = urlparse(url).path
+    row_name = path.split("/")[-1]
+    filename = unquote(row_name)
     hashed_name = blake2b(digest_size=5)
     hashed_name.update(bin(filename))
     return f'{hashed_name.hexdigest()}{filename}'
