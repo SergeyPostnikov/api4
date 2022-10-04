@@ -35,9 +35,5 @@ if __name__ == '__main__':
             print(err)
             time.sleep(5)
             continue
-        except HTTPError as err:
-            print(err)
-            time.sleep(5)
-            continue
         else:
             time.sleep(3600 * int(period))
