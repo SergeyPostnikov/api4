@@ -14,7 +14,7 @@ def get_filename(url):
     row_name = path.split("/")[-1]
     filename = unquote(row_name)
     hashed_name = blake2b(digest_size=5)
-    hashed_name.update(bin(filename))
+    hashed_name.update(bytes(filename, encoding = 'utf-8'))
     return f'{hashed_name.hexdigest()}{filename}'
 
 
